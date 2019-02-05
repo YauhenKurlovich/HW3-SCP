@@ -1,4 +1,5 @@
 *.jar
 *.mtar
 db/node_modules/
+service/node_modules/
 .mta

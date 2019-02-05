@@ -27,7 +27,6 @@ modules:
             memory: 128M
             disk_quota: 128M
         
-
 resources:
     -
         name: pt_hdi
