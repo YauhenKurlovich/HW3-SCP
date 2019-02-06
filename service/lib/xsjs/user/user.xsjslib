@@ -27,13 +27,13 @@ var user = function (connection) {
         $.response.setBody(JSON.stringify(result));
     };
 
-    this.doDelete = function (usid) {
-        const statement = createPreparedDeleteStatement(USER_TABLE, {usid: usid});
+    this.doDelete = function (oUser) {
+        const statement = createPreparedDeleteStatement(USER_TABLE, oUser);
         connection.executeUpdate(statement.sql, statement.aValues);
 
         connection.commit();
         $.response.status = $.net.http.OK;
-        $.response.setBody(JSON.stringify({}));
+        $.response.setBody(JSON.stringify(oUser));
     };
 
 
@@ -84,20 +84,7 @@ var user = function (connection) {
             sql: "",
         };
 
-        let sWhereClause = '';
-        var name, value, condIndex, condition;
-        oConditionObject.forEach((value, key) => {
-            whereClause += `"${key}"=? and `;
-            oResult.aValues.push(value);
-            oResult.aParams.push(key);
-        });
-        // Remove the last unnecessary AND
-        sWhereClause = sWhereClause.slice(0, -5);
-        if (sWhereClause.length > 0) {
-            sWhereClause = " where " + sWhereClause;
-        }
-
-        oResult.sql = `delete from "${sTableName}" ${sWhereClause}`;
+        oResult.sql = `DELETE FROM "${sTableName}" WHERE "usid"=${oConditionObject.userid};`;
 
         $.trace.error("sql to delete: " + oResult.sql);
         return oResult;
