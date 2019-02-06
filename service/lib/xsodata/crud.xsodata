@@ -1,17 +1,17 @@
-service namespace "HiMTA"{
+service namespace "HW3SCP"{
 
-    "HiMTA::User" as "Users"
+    "HW3SCP::User" as "Users"
                 navigates("Users_2_Address" as "toAddress", "Users_2_Cars" as "toCars")
             create forbidden
             update forbidden
             delete forbidden;
 
-    "HiMTA::ExtraInfo.Address" as "Address"
+    "HW3SCP::ExtraInfo.Address" as "Address"
             create forbidden
             update forbidden
             delete forbidden;
 
-    "HiMTA::ExtraInfo.Cars" as "Cars"
+    "HW3SCP::ExtraInfo.Cars" as "Cars"
                 navigates("Cars_2_User" as "toUser")
             create forbidden
             update forbidden
