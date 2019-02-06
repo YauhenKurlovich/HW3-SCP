@@ -17,8 +17,16 @@ var user = function (connection) {
     };
 
 
-    this.doPut = function (obj) {
-        //TODO
+    this.doPut = function (oUser) {
+        let sql = '';       
+
+        sql = `UPDATE "${USER_TABLE}" SET "name"='${oUser.name}' WHERE "usid"=${oUser.usid};`;
+
+        connection.executeUpdate(sql);
+        connection.commit();
+
+        $.response.status = $.net.http.OK;
+        $.response.setBody("Updated");
     };
 
     this.doGet = function () {
@@ -72,7 +80,7 @@ var user = function (connection) {
         sColumnList = sColumnList.slice(0, -1);
         sValueList = sValueList.slice(0, -2);
 
-        oResult.sql = `insert into "${sTableName}" (${sColumnList}) values (${sValueList})`;
+        oResult.sql = `insert into "${sTableName}" (${sColumnList}) = (${sValueList}) where `;
 
         return oResult;
     };
