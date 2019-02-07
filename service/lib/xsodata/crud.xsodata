@@ -4,7 +4,7 @@ service namespace "HW3SCP"{
                 navigates("Users_2_Address" as "toAddress", "Users_2_Cars" as "toCars")
             create using "xsjs.user:usersCrud.xsjslib::usersCreate"
             update using "xsjs.user:usersCrud.xsjslib::usersUpdate"
-            delete forbidden;
+            delete using "xsjs.user:usersCrud.xsjslib::usersDelete";
 
     "HW3SCP::ExtraInfo.Address" as "Address"
             create forbidden
