@@ -18,7 +18,7 @@ var user = function (connection) {
 
 
     this.doPut = function (oUser) {
-        let sql = '';       
+        let sql = '';
 
         sql = `UPDATE "${USER_TABLE}" SET "name"='${oUser.name}' WHERE "usid"=${oUser.usid};`;
 
