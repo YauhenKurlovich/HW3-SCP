@@ -80,7 +80,7 @@ var user = function (connection) {
         sColumnList = sColumnList.slice(0, -1);
         sValueList = sValueList.slice(0, -2);
 
-        oResult.sql = `insert into "${sTableName}" (${sColumnList}) = (${sValueList}) where `;
+        oResult.sql = `insert into "${sTableName}" (${sColumnList}) values (${sValueList})`;
 
         return oResult;
     };
