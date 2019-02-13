@@ -3,14 +3,9 @@ var user = function (connection) {
     const USER_TABLE = "HW3SCP::User";
 
     this.doPost = function (oUser) {
-        //Get Next ID Number
         oUser.usid = getNextval("HW3SCP::usid");
-
-        //generate query
         const statement = createPreparedInsertStatement(USER_TABLE, oUser);
-        //execute update
         connection.executeUpdate(statement.sql, statement.aValues);
-
         connection.commit();
         $.response.status = $.net.http.CREATED;
         $.response.setBody(JSON.stringify(oUser));
@@ -18,13 +13,9 @@ var user = function (connection) {
 
 
     this.doPut = function (oUser) {
-        let sql = '';
-
-        sql = `UPDATE "${USER_TABLE}" SET "name"='${oUser.name}' WHERE "usid"=${oUser.usid};`;
-
+        let sql = `UPDATE "${USER_TABLE}" SET "name"='${oUser.name}' WHERE "usid"=${oUser.usid};`;
         connection.executeUpdate(sql);
         connection.commit();
-
         $.response.status = $.net.http.OK;
         $.response.setBody("Updated");
     };
@@ -38,13 +29,10 @@ var user = function (connection) {
     this.doDelete = function (oUser) {
         const statement = createPreparedDeleteStatement(USER_TABLE, oUser);
         connection.executeUpdate(statement.sql, statement.aValues);
-
         connection.commit();
         $.response.status = $.net.http.OK;
         $.response.setBody(JSON.stringify(oUser));
     };
-
-
 
     function getNextval(sSeqName) {
         const statement = `select "${sSeqName}".NEXTVAL as "ID" from dummy`;
@@ -52,7 +40,8 @@ var user = function (connection) {
 
         if (result.length > 0) {
             return result[0].ID;
-        } else {
+        }
+        else {
             throw new Error('ID was not generated');
         }
     }
@@ -66,17 +55,13 @@ var user = function (connection) {
 
         let sColumnList = '', sValueList = '';
 
-        Object.keys(oValueObject).forEach(value => {
-            sColumnList += `"${value}",`;
-            oResult.aParams.push(value);
-        });
+        for(let key in oValueObject){
+                sColumnList += "${key}",;
+                oResult.aParams.push(key);
+                sValueList += "?, ";
+                oResult.aValues.push(oValueObject[key]);
+        }
 
-        Object.values(oValueObject).forEach(value => {
-            sValueList += "?, ";
-            oResult.aValues.push(value);
-        });
-
-        // Remove the last unnecessary comma and blank
         sColumnList = sColumnList.slice(0, -1);
         sValueList = sValueList.slice(0, -2);
 
@@ -86,15 +71,7 @@ var user = function (connection) {
     };
 
     function createPreparedDeleteStatement(sTableName, oConditionObject) {
-        let oResult = {
-            aParams: [],
-            aValues: [],
-            sql: "",
-        };
-
-        oResult.sql = `DELETE FROM "${sTableName}" WHERE "usid"=${oConditionObject.userid};`;
-
-        $.trace.error("sql to delete: " + oResult.sql);
-        return oResult;
+        let sql = `DELETE FROM "${sTableName}" WHERE "usid"=${oConditionObject.userid};`;
+        return sql;
     };
 };
