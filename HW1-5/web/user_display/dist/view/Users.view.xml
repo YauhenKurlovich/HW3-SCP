@@ -1,0 +1,32 @@
+<mvc:View
+controllerName="sap.ui.demo.db.controller.User"
+	xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Shell>
+	<App id="app">
+	<pages>
+	<Page >
+    <Panel headerText="{i18n>header}" class="sapUiResponsiveMargin" width="auto">
+		<content>
+			<List
+				id="UserList"
+				headerText="{i18n>userList}"
+				items="{
+					path: 'user>/value',
+					factory: '.userListFactory'
+				}">
+				<dependents>
+					<ObjectListItem
+						id="userExtended"
+						title="Id: {user>usid} Name: {user>name}">
+					</ObjectListItem>
+				</dependents>
+			</List>
+		</content>
+	</Panel>
+	</Page>
+	</pages>
+	</App>
+	</Shell>
+</mvc:View>
