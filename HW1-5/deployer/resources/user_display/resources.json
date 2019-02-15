@@ -26,14 +26,7 @@
             "raw": "i18n\\i18n.properties"
         },
         {
-            "name": "index-dbg.js",
-            "isDebug": true
-        },
-        {
             "name": "index.html"
-        },
-        {
-            "name": "index.js"
         },
         {
             "name": "manifest.json"
@@ -56,9 +49,6 @@
             "name": "tmp\\index.html"
         },
         {
-            "name": "tmp\\index.js"
-        },
-        {
             "name": "tmp\\manifest.json"
         },
         {
@@ -69,9 +59,6 @@
         },
         {
             "name": "tmp-dbg\\controller\\User.controller.js"
-        },
-        {
-            "name": "tmp-dbg\\index.js"
         },
         {
             "name": "view\\Users.view.xml"
