@@ -12,10 +12,21 @@
             "name": "Component.js"
         },
         {
+            "name": "controller\\CreateUser-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller\\CreateUser.controller.js"
+        },
+        {
             "name": "di.code-validation.core_issues.json"
         },
         {
             "name": "fragment\\ConfirmDeleteDialog.fragment.xml"
+        },
+        {
+            "name": "i18n\\i18n.properties",
+            "raw": "i18n\\i18n.properties"
         },
         {
             "name": "index.html"
@@ -31,7 +42,14 @@
             "name": "tmp\\Component.js"
         },
         {
+            "name": "tmp\\controller\\CreateUser.controller.js"
+        },
+        {
             "name": "tmp\\fragment\\ConfirmDeleteDialog.fragment.xml"
+        },
+        {
+            "name": "tmp\\i18n\\i18n.properties",
+            "raw": "i18n\\i18n.properties"
         },
         {
             "name": "tmp\\index.html"
@@ -40,7 +58,16 @@
             "name": "tmp\\manifest.json"
         },
         {
+            "name": "tmp\\view\\CreateUser.view.xml"
+        },
+        {
             "name": "tmp-dbg\\Component.js"
+        },
+        {
+            "name": "tmp-dbg\\controller\\CreateUser.controller.js"
+        },
+        {
+            "name": "view\\CreateUser.view.xml"
         },
         {
             "name": "xs-app.json"

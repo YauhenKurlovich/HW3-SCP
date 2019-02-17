@@ -3,7 +3,6 @@
 	"sap.app": {
 		"id": "user_create",
 		"type": "application",
-		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
 			"version": "1.0.0"
 		},
@@ -28,8 +27,8 @@
   },
   "sap.platform.cf": {
     "oAuthScopes": [
-      "HiMTA!t10656.HW3SCP.view",
-      "HiMTA!t10656.HW3SCP.edit"
+      "HW3SCP!t10656.HW3SCP.view",
+      "HW3SCP!t10656.HW3SCP.edit"
     ]
   },
 	"sap.ui": {
@@ -56,7 +55,7 @@
 
 	"sap.ui5": {
     "rootView": {
-      "viewName": "user_create.view.App",
+      "viewName": "user_create.view.CreateUser",
       "type": "XML"
     },
 		"dependencies": {
@@ -84,9 +83,7 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+
 		}
 	}
 }
