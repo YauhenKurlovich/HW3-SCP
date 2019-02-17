@@ -5,3 +5,4 @@ service/node_modules/
 .mta
 node_modules
 .idea
+dist
