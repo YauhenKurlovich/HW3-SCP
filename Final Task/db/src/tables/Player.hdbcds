@@ -1,0 +1,16 @@
+namespace FTSCP;
+
+using FTSCP::Team;
+
+entity Player {
+    @Comment: 'Id of Player'
+    key pId : String(4);
+    @Comment: 'Player for Team'
+	teamId : String(4);
+    @Comment: 'Name of Player'
+    name : String(100);
+    @Comment: 'Country'
+    country : String(100);
+
+   toTeam : Association[1] to Team on toTeam.teamId = teamId;
+};
