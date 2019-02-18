@@ -12,7 +12,7 @@ sap.ui.define([
             var settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": "https://p2001081746trial-trial-dev-service.cfapps.eu10.hana.ondemand.com/xsodata/crud.xsodata/Users",
+                "url": "https://p2001081746trial-trial-dev-router.cfapps.eu10.hana.ondemand.com/api/xsodata/crud.xsodata/Users",
                 "method": "POST",
                 "headers": {
                     "content-type": "application/json"
