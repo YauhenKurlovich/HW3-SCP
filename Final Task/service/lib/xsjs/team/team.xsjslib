@@ -1,6 +1,9 @@
 const Servicelib = $.import('xsjs', 'crudService').crudService;
 const serviceLib = new Servicelib();
 
+const AppConst = $.import('xsjs', 'crudConst').crudConst;
+const appConst = new AppConst();
+
 var team = function (connection) {
 
     this.doPost = function (oTeam) {
@@ -17,7 +20,7 @@ var team = function (connection) {
     };
 
     this.doGet = function () {
-        const result = '';
+        const result = connection.executeQuery(`SELECT * FROM "${appConst.TEAM_TABLE}"`);
         $.response.status = $.net.http.OK;
         $.response.setBody(JSON.stringify(result));
     };
