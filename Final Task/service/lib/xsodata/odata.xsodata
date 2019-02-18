@@ -1,0 +1,20 @@
+service namespace "FTSCP"{
+
+    "FTSCP::Team" as "Teams"
+                navigates("Team_2_Players" as "toPlayers")
+            create using "xsjs.team:teamHookCrud.xsjslib::teamCreate"
+            update using "xsjs.team:teamHookCrud.xsjslib::teamUpdate"
+            delete using "xsjs.team:teamHookCrud.xsjslib::teamDelete";
+
+    "FTSCP::Player" as "Players"
+                navigates("Players_2_Team" as "toTeam")
+            create using "xsjs.player:playerHookCrud.xsjslib::playerCreate"
+            update using "xsjs.player:playerHookCrud.xsjslib::playerUpdate"
+            delete using "xsjs.player:playerHookCrud.xsjslib::playerDelete";
+
+    association "Team_2_Players" principal "Teams"("teamId")
+            multiplicity "1" dependent "Players"("teamId") multiplicity "*";
+
+    association "Players_2_Team" principal "Players"("teamId")
+            multiplicity "1" dependent "Teams"("teamId") multiplicity "1";
+}
