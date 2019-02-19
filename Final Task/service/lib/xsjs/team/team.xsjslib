@@ -22,7 +22,7 @@ var team = function (connection) {
 
 
     this.doPut = function (oTeam) {
-      if(oTeam.name == undefined && oTeam.sportName == undefined){
+      if(oTeam.teamId == undefined && oTeam.name == undefined && oTeam.sportName == undefined){
           throw new Error(appConst.UNDEFINED);
       }
       else{
@@ -48,6 +48,11 @@ var team = function (connection) {
         let sql = `DELETE FROM "${appConst.TEAM_TABLE}" WHERE "teamId"=${oTeam.teamId};`;
         connection.executeUpdate(sql);
         connection.commit();
+
+        sql = `DELETE FROM "${appConst.PLAYER_TABLE}" WHERE "teamId"=${oTeam.teamId};`;
+        connection.executeUpdate(sql);
+        connection.commit();
+
         $.response.status = $.net.http.OK;
         $.response.setBody(JSON.stringify(oTeam));
       }

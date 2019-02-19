@@ -142,6 +142,36 @@ this.recordSetToJSON = function (rs, rsName) {
 
  }
 
+this.parseOdataObject = function (param){
+  var after = param.afterTableName;
+
+  var pStmt = param.connection.prepareStatement("select * from \"" + after + "\"");
+  var oResult = pStmt.executeQuery();
+
+  var oObjItems = this.recordSetToJSON(oResult, "items");
+  var oObj = oObjItems.items[0];
+  return oObj;
+}
+
+this.checkExistTeamForPlayer = function (teamId, connection){
+  return true;
+}
+
+this.createPreparedUpdatePStatement = function (sTableName, oValueObject) {
+    let sql = `UPDATE "${sTableName}" SET `;
+
+    for(let key in oValueObject){
+        if(key!='teamId')
+        {
+            sql += `"${key}"='${oValueObject[key]}', `
+        }
+    };
+
+    sql = sql.slice(0, -2);
+    sql += ` WHERE "pId"='${oValueObject.pId}';`;
+    return sql;
+}
+
 escapeSpecialChars = function (input) {
    if (typeof(input) != 'undefined' && input != null) {
      return input
