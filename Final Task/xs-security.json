@@ -1,0 +1,54 @@
+{
+  "xsappname": "FTSCP",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    },
+    {
+      "name": "$XSAPPNAME.FTSCP.view",
+      "description": "Display"
+    },
+    {
+      "name": "$XSAPPNAME.FTSCP.create",
+      "description": "Create"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "client",
+      "description": "Session Client",
+      "valueType": "int"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    },
+    {
+      "name": "God",
+      "description": "Can do anything",
+      "scope-references": [
+        "$XSAPPNAME.FTSCP.view",
+        "$XSAPPNAME.FTSCP.create"
+      ],
+      "attribute-references": [
+      ]
+    },
+    {
+      "name": "SimpleUser",
+      "description": "Display mode only",
+      "scope-references": [
+        "$XSAPPNAME.FTSCP.view"
+      ],
+      "attribute-references": [
+      ]
+    }
+	  ]
+}
