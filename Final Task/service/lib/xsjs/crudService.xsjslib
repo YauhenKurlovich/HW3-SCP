@@ -39,6 +39,21 @@ this.createPreparedInsertStatement = function(sTableName, oValueObject) {
     return oResult;
 };
 
+this.createPreparedUpdateStatement = function (sTableName, oValueObject) {
+    let sql = `UPDATE "${sTableName}" SET `;
+
+    for(let key in oValueObject){
+        if(key!='teamId')
+        {
+            sql += `"${key}"='${oValueObject[key]}', `
+        }
+    };
+
+    sql = sql.slice(0, -2);
+    sql += ` WHERE "teamId"='${oValueObject.teamId}';`;
+    return sql;
+}
+
 this.fillAndExecute = function (pStmt, Obj) {
   pStmt.setString(1, Obj.id.toString());
   pStmt.setString(2, Obj.name.toString());
