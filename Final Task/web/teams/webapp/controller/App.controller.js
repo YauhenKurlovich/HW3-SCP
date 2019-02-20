@@ -9,10 +9,59 @@ sap.ui.define([
 ], function(jQuery, Button, Dialog, List, StandardListItem, Controller, JSONModel) {
 	"use strict";
 
+	this.editOn = function (items, index) {
+		items[index].getCells()[5].setEnabled(false);
+		items[index].getCells()[6].setEnabled(true);
+	}
+
+	this.editOff = function (items, index) {
+			items[index].getCells()[1].setEditable(false);
+			items[index].getCells()[2].setEditable(false);
+		
+		items[index].getCells()[5].setEnabled(true);
+		items[index].getCells()[6].setEnabled(false);
+	}
+
 	return Controller.extend("teams.controller.App", {
 
 		fixedSizeDialog: null,
+		
+		onEdit : function(oEvent) {
+			var oTable = this.getView().byId('idTeamsTable');
+			var selItem = oTable.getSelectedItem();
+            var aItems = oTable.getItems();
+			var index = oTable.indexOfItem(selItem);
+            for (var j = 1; j < 3; j++) {
+                aItems[index].getCells()[j].setEditable(aItems[index].getSelected());
+            }
+            editOn(aItems, index);
+		},
 
+		onSave : function (oEvent) {
+			var oTable = this.getView().byId('idTeamsTable');
+            var selItem = oTable.getSelectedItem();
+            var aItems = oTable.getItems();
+			var index = oTable.indexOfItem(selItem);
+			var id = aItems[index].getCells()[0].getValue();
+            var name = aItems[index].getCells()[1].getValue();
+            var sportName = aItems[index].getCells()[2].getValue();
+            var teamId = selItem.getBindingContext("dataModel").getObject().teamId;
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://p2001126657trial-trial-dev-router.cfapps.eu10.hana.ondemand.com/api/xsjs/team/team.xsjs",
+                "method": "PUT",
+                "headers": {
+                    "content-type": "application/json"
+                },
+                "processData": false,
+                "data": "{\"teamId\": \"" + id + "\",\"name\": \"" + name + "\", \"sportName\": \"" + sportName + "\"}"
+            };
+            $.ajax(settings).done(function (response) {
+                selItem.getBindingContext("dataModel").getModel().refresh(true);
+            });
+            editOff(aItems, index);
+		},
 		onDelete : function (oEvent) {
 			var oTable = this.getView().byId('idTeamsTable');
             var selItem = oTable.getSelectedItem();

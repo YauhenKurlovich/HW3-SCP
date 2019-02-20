@@ -48,13 +48,13 @@
 				<items>
 					<ColumnListItem>
                     <cells>
-                      <Label text="{dataModel>teamId}"/>
+                      <Input editable="false" value="{dataModel>teamId}"/>
                     </cells>
                     <cells>
-                      <Label text="{dataModel>name}"/>
+                      <Input editable="false" value="{dataModel>name}"/>
                     </cells>
                        <cells>
-                      <Label text="{dataModel>sportName}"/>
+                      <Input editable="false" value="{dataModel>sportName}"/>
                     </cells>
                        <cells>
                       <Label text="{dataModel>ts_create}"/>
@@ -118,19 +118,19 @@
 				<items>
 					<ColumnListItem>
                     <cells>
-                      <Label text="{dataModel>teamId}"/>
+                      <Input editable="false" value="{dataModel>teamId}"/>
                     </cells>
                     <cells>
-                      <Label text="{dataModel>name}"/>
+                      <Input editable="false" value="{dataModel>name}"/>
                     </cells>
                        <cells>
-                      <Label text="{dataModel>sportName}"/>
+                      <Input editable="false" value="{dataModel>sportName}"/>
                     </cells>
                        <cells>
-                      <Label text="{dataModel>ts_create}"/>
+                      <Input editable="false" value="{dataModel>ts_create}"/>
                     </cells>
                     <cells>
-                      <Label text="{dataModel>ts_update}"/>
+                      <Input editable="false" value="{dataModel>ts_update}"/>
                     </cells>
                     <cells>
                       <Button id="editPButton" text="{i18n>edit}" type="Transparent"
