@@ -1,0 +1,155 @@
+<mvc:View
+	height="100%"
+	controllerName="teams.controller.App"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+
+	<Page showHeader="false" enableScrolling="true" class="sapUiContentPadding"
+		showNavButton="false">
+
+		<content>
+			<Table id="idTeamsTable" mode="SingleSelectMaster" items="{path: 'dataModel>/Teams'}" growing="true" growingThreshold="10" paste="onPaste">
+				
+                 <headerToolbar>
+					<OverflowToolbar id="otbSubheader">
+						<Title text="{i18n>teamTableName}" level="H2" />
+                        <Button id="addTButton" text="{i18n>add}" type="Transparent"
+							press="onAdd" />
+					</OverflowToolbar>
+				</headerToolbar>
+
+				<columns>
+					<Column >
+						<Text text="{i18n>teamId}" />
+					</Column>
+					<Column>
+						<Text text="{i18n>teamName}" />
+					</Column>
+					<Column >
+						<Text text="{i18n>sportName}" />
+					</Column>
+					<Column>
+						<Text text="{i18n>created}" />
+					</Column>
+                    <Column>
+						<Text text="{i18n>updated}" />
+					</Column>
+                    <Column hAlign="End">
+						<Text text="{i18n>edit}" />
+					</Column>
+                    <Column hAlign="End">
+						<Text text="{i18n>delete}" />
+					</Column>
+                    <Column hAlign="End">
+						<Text text="{i18n>save}" />
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem>
+                    <cells>
+                      <Label text="{dataModel>teamId}"/>
+                    </cells>
+                    <cells>
+                      <Label text="{dataModel>name}"/>
+                    </cells>
+                       <cells>
+                      <Label text="{dataModel>sportName}"/>
+                    </cells>
+                       <cells>
+                      <Label text="{dataModel>ts_create}"/>
+                    </cells>
+                    <cells>
+                      <Label text="{dataModel>ts_update}"/>
+                    </cells>
+                     <cells>
+                      <Button id="editButton" text="{i18n>edit}" type="Transparent"
+							press="onEdit" />
+                    </cells>
+                     <cells>
+                      <Button id="deleteButton" text="{i18n>delete}" type="Transparent"
+							press="onDelete" />
+                    </cells>
+                     <cells>
+                     <Button id="saveButton" text="{i18n>save}" type="Transparent"
+							press="onSave" />
+                    </cells>
+                  </ColumnListItem>
+				</items>
+
+			</Table>
+            <Table id="idPlayersTable" mode="SingleSelectMaster" growing="true" growingThreshold="10" paste="onPaste">
+				
+                <headerToolbar>
+					<OverflowToolbar id="otbPSubheader">
+						<Title text="{i18n>playerTableName}" level="H2" />
+                        <Button id="addPButton" text="{i18n>add}" type="Transparent"
+							press="onAdd" />
+					</OverflowToolbar>
+				</headerToolbar>
+
+				<columns>
+					<Column width="12em">
+						<Text text="{i18n>playerId}" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>playerName}" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="{i18n>country}" />
+					</Column>
+					<Column hAlign="End">
+						<Text text="{i18n>created}" />
+					</Column>
+                    	<Column hAlign="End">
+						<Text text="{i18n>updated}" />
+					</Column>
+                     <Column hAlign="End">
+						<Text text="{i18n>edit}" />
+					</Column>
+                    <Column hAlign="End">
+						<Text text="{i18n>delete}" />
+					</Column>
+                    <Column hAlign="End">
+						<Text text="{i18n>save}" />
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem>
+                    <cells>
+                      <Label text="{dataModel>teamId}"/>
+                    </cells>
+                    <cells>
+                      <Label text="{dataModel>name}"/>
+                    </cells>
+                       <cells>
+                      <Label text="{dataModel>sportName}"/>
+                    </cells>
+                       <cells>
+                      <Label text="{dataModel>ts_create}"/>
+                    </cells>
+                    <cells>
+                      <Label text="{dataModel>ts_update}"/>
+                    </cells>
+                    <cells>
+                      <Button id="editPButton" text="{i18n>edit}" type="Transparent"
+							press="onEdit" />
+                    </cells>
+                     <cells>
+                      <Button id="deletePButton" text="{i18n>delete}" type="Transparent"
+							press="onDelete" />
+                    </cells>
+                     <cells>
+                     <Button id="savePButton" text="{i18n>save}" type="Transparent"
+							press="onSave" />
+                    </cells>
+                  </ColumnListItem>
+				</items>
+
+			</Table>
+		</content>
+
+
+	</Page>
+</mvc:View>

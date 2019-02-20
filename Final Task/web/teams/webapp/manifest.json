@@ -7,15 +7,15 @@
 		"applicationVersion": {
 			"version": "1.0.0"
 		},
-		"title": "{{appTitle}}",
-		"description": "{{appDescription}}",
+		"title": "Teams and Players",
+		"description": "CRUD operations for 2 tables",
 		"sourceTemplate": {
 			"id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
 			"version": "1.40.12"
 		},
 		"dataSources": {
 			"mainService": {
-				"uri": "https://p2001081746trial-trial-dev-router.cfapps.eu10.hana.ondemand.com/api/xsodata/crud.xsodata",
+				"uri": "https://p2001126657trial-trial-dev-router.cfapps.eu10.hana.ondemand.com/api/xsodata/odata.xsodata",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0"
@@ -48,7 +48,7 @@
 
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "teams.view.Users",
+			"viewName": "teams.view.App",
 			"type": "XML",
 			"async": true,
 			"id": "display"
@@ -69,10 +69,10 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "user_display.i18n.i18n"
+					"bundleName": "teams.i18n.i18n"
 				}
 			},
-			"users": {
+			"dataModel": {
 				"dataSource": "mainService",
 				"settings": {
 					"defaultBindingMode": "TwoWay",
@@ -82,6 +82,6 @@
 				}
 			}
 		}
-		},
-		"resources": {		}
-	}
+	},
+	"resources": {}
+}
