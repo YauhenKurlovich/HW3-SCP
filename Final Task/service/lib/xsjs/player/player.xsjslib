@@ -31,8 +31,8 @@ var player = function (connection) {
           throw new Error(appConst.UNDEFINED_ID);
       }
       else{
-        let sql = serviceLib.createPreparedUpdatePStatement(appConst.PLAYER_TABLE, oPlayer);
-        connection.executeUpdate(sql);
+        let statement = serviceLib.createPreparedUpdateStatement(appConst.PLAYER_TABLE, oPlayer);
+        connection.executeUpdate(statement.sql, statement.aValues);
         connection.commit();
         $.response.status = $.net.http.OK;
         $.response.setBody(JSON.stringify(oPlayer));

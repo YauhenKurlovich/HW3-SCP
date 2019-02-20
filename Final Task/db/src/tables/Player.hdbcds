@@ -11,6 +11,10 @@ entity Player {
     name : String(100);
     @Comment: 'Country'
     country : String(100);
+    @Comment: 'Updated'
+    ts_update: UTCDateTime;
+    @Comment: 'Created'
+    ts_create: UTCDateTime;
 
    toTeam : Association[1] to Team on toTeam.teamId = teamId;
 };

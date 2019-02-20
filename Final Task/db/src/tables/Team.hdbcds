@@ -9,6 +9,10 @@ entity Team {
     name : String(100);
     @Comment: 'Sport Name'
     sportName : String(100);
-
+    @Comment: 'Updated'
+    ts_update: UTCDateTime;
+    @Comment: 'Created'
+    ts_create: UTCDateTime;
+    
     toPlayers : Association[*] to Player on toPlayers.teamId = teamId;
 };

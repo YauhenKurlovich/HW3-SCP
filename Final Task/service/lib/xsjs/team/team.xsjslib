@@ -26,8 +26,8 @@ var team = function (connection) {
           throw new Error(appConst.UNDEFINED);
       }
       else{
-        let sql = serviceLib.createPreparedUpdateStatement(appConst.TEAM_TABLE, oTeam);
-        connection.executeUpdate(sql);
+        let statement = serviceLib.createPreparedUpdateStatement(appConst.TEAM_TABLE, oTeam);
+        connection.executeUpdate(statement.sql, statement.aValues);
         connection.commit();
         $.response.status = $.net.http.OK;
         $.response.setBody(JSON.stringify(oTeam));
