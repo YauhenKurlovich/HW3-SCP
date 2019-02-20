@@ -1,8 +1,7 @@
 <mvc:View controllerName="user_create.controller.CreateUser" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc">
     <Shell>
         <App>
-            <Page
-                    title="Create User">
+            <Page title="Create User">
                 <Panel class="sapUiResponsiveMargin" width="auto">
                     <content>
                         <Label text="Name" class="sapUiSmallMargin" />

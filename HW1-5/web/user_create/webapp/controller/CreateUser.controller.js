@@ -8,7 +8,6 @@ sap.ui.define([
         },
         createUser: function () {
             var Name = sap.ui.getCore().byId(this.getView().sId + "--input_name").getValue();
-            console.log(Name);
             var settings = {
                 "async": true,
                 "crossDomain": true,
