@@ -8,28 +8,29 @@
 		showNavButton="false">
 
 		<content>
-			<Table id="idTeamsTable" mode="SingleSelectMaster" items="{path: 'dataModel>/Teams'}" growing="true" growingThreshold="10" paste="onPaste">
+			<Table id="idTeamsTable" items="{path: 'dataModel>/Teams'}"  itemPress="onItemPress" growingScrollToLoad="true" mode="SingleSelectMaster" growing="true" growingThreshold="10" paste="onPaste">
 				
                  <headerToolbar>
 					<OverflowToolbar id="otbSubheader">
 						<Title text="{i18n>teamTableName}" level="H2" />
-                        <Button id="addTButton" text="{i18n>add}" type="Transparent"
+                        <Button type="Emphasized" icon="sap-icon://add" id="addTButton" 
 							press="onAdd" />
-                        <Button id="editButton" text="{i18n>editon}" type="Transparent"
+                        <Button id="editButton" type="Emphasized" icon="sap-icon://edit"
 							press="onEdit" />
-                            <Button id="editOffButton" text="{i18n>editoff}" type="Transparent"
+                            <Button id="editOffButton" type="Emphasized" icon="sap-icon://decline"
 							press="offEdit" />
+                            <SearchField id="searchField" width="30%" placeholder="search teams..." enableSuggestions="true" />
 					</OverflowToolbar>
 				</headerToolbar>
 
 				<columns>
-					<Column >
+					<Column  width="100px">
 						<Text text="{i18n>teamId}" />
 					</Column>
-					<Column>
+					<Column  width="150px">
 						<Text text="{i18n>teamName}" />
 					</Column>
-					<Column >
+					<Column  width="150px">
 						<Text text="{i18n>sportName}" />
 					</Column>
 					<Column>
@@ -38,16 +39,16 @@
                     <Column>
 						<Text text="{i18n>updated}" />
 					</Column>
-                    <Column hAlign="End">
+                    <Column   width="80px">
 						<Text text="{i18n>delete}" />
 					</Column>
-                    <Column hAlign="End">
+                    <Column  width="80px">
 						<Text text="{i18n>save}" />
 					</Column>
 				</columns>
 
 				<items>
-					<ColumnListItem>
+					<ColumnListItem type="Active">
                     <cells>
                       <Input editable="false" value="{dataModel>teamId}"/>
                     </cells>
@@ -64,50 +65,56 @@
                       <Label text="{dataModel>ts_update}"/>
                     </cells>
                      <cells>
-                      <Button id="deleteButton" text="{i18n>delete}" type="Transparent"
+                      <Button id="deleteButton" type="Emphasized" icon="sap-icon://delete"
 							press="onDelete" />
                     </cells>
                      <cells>
-                     <Button id="saveButton" text="{i18n>save}" type="Transparent"
+                     <Button id="saveButton" type="Emphasized" icon="sap-icon://save" enabled="false"
 							press="onSave" />
                     </cells>
                   </ColumnListItem>
 				</items>
 
 			</Table>
-            <Table id="idPlayersTable" mode="SingleSelectMaster" growing="true" growingThreshold="10" paste="onPaste">
+
+            <Table id="idPlayersTable" items="{path: 'dataModel>/Players'}"  mode="SingleSelectMaster" growing="true" growingThreshold="10" paste="onPaste">
 				
                 <headerToolbar>
 					<OverflowToolbar id="otbPSubheader">
 						<Title text="{i18n>playerTableName}" level="H2" />
-                        <Button id="addPButton" text="{i18n>add}" type="Transparent"
-							press="onAdd" />
+                        <Button id="addPButton" type="Emphasized" icon="sap-icon://add"
+							press="onAddP" />
+                        <Button id="editPButton" type="Emphasized" icon="sap-icon://edit"
+							press="onEditP" />
+                        <Button id="editOffPButton" type="Emphasized" icon="sap-icon://decline"
+							press="offEditP" />
+                     <SearchField id="searchPField" width="30%" placeholder="search players..." enableSuggestions="true" />
 					</OverflowToolbar>
 				</headerToolbar>
 
 				<columns>
-					<Column width="12em">
+					<Column  width="100px">
 						<Text text="{i18n>playerId}" />
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+                    <Column  width="100px">
+						<Text text="{i18n>teamId}" />
+					</Column>
+					<Column  width="150px">
 						<Text text="{i18n>playerName}" />
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+					<Column  width="150px">
 						<Text text="{i18n>country}" />
 					</Column>
-					<Column hAlign="End">
+					<Column >
 						<Text text="{i18n>created}" />
 					</Column>
-                    	<Column hAlign="End">
+                    	<Column >
 						<Text text="{i18n>updated}" />
 					</Column>
-                     <Column hAlign="End">
-						<Text text="{i18n>edit}" />
-					</Column>
-                    <Column hAlign="End">
+                    <Column width="80px">
 						<Text text="{i18n>delete}" />
 					</Column>
-                    <Column hAlign="End">
+                    <Column width="80px">
 						<Text text="{i18n>save}" />
 					</Column>
 				</columns>
@@ -115,38 +122,35 @@
 				<items>
 					<ColumnListItem>
                     <cells>
+                      <Input editable="false" value="{dataModel>pId}"/>
+                    </cells>
+                    <cells>
                       <Input editable="false" value="{dataModel>teamId}"/>
                     </cells>
                     <cells>
                       <Input editable="false" value="{dataModel>name}"/>
                     </cells>
                        <cells>
-                      <Input editable="false" value="{dataModel>sportName}"/>
+                      <Input editable="false" value="{dataModel>country}"/>
                     </cells>
                        <cells>
-                      <Input editable="false" value="{dataModel>ts_create}"/>
+                      <Label text="{dataModel>ts_create}"/>
                     </cells>
                     <cells>
-                      <Input editable="false" value="{dataModel>ts_update}"/>
-                    </cells>
-                    <cells>
-                      <Button id="editPButton" text="{i18n>edit}" type="Transparent"
-							press="onEdit" />
+                      <Label text="{dataModel>ts_update}"/>
                     </cells>
                      <cells>
-                      <Button id="deletePButton" text="{i18n>delete}" type="Transparent"
-							press="onDelete" />
+                      <Button id="deletePButton" type="Emphasized" icon="sap-icon://delete"
+							press="onDeleteP" />
                     </cells>
                      <cells>
-                     <Button id="savePButton" text="{i18n>save}" type="Transparent"
-							press="onSave" />
+                     <Button id="savePButton" type="Emphasized" icon="sap-icon://save" enabled="false"
+							press="onSaveP" />
                     </cells>
                   </ColumnListItem>
 				</items>
 
 			</Table>
 		</content>
-
-
 	</Page>
 </mvc:View>
