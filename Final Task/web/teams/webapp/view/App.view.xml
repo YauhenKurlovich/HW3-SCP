@@ -15,6 +15,10 @@
 						<Title text="{i18n>teamTableName}" level="H2" />
                         <Button id="addTButton" text="{i18n>add}" type="Transparent"
 							press="onAdd" />
+                        <Button id="editButton" text="{i18n>editon}" type="Transparent"
+							press="onEdit" />
+                            <Button id="editOffButton" text="{i18n>editoff}" type="Transparent"
+							press="offEdit" />
 					</OverflowToolbar>
 				</headerToolbar>
 
@@ -33,9 +37,6 @@
 					</Column>
                     <Column>
 						<Text text="{i18n>updated}" />
-					</Column>
-                    <Column hAlign="End">
-						<Text text="{i18n>edit}" />
 					</Column>
                     <Column hAlign="End">
 						<Text text="{i18n>delete}" />
@@ -61,10 +62,6 @@
                     </cells>
                     <cells>
                       <Label text="{dataModel>ts_update}"/>
-                    </cells>
-                     <cells>
-                      <Button id="editButton" text="{i18n>edit}" type="Transparent"
-							press="onEdit" />
                     </cells>
                      <cells>
                       <Button id="deleteButton" text="{i18n>delete}" type="Transparent"
