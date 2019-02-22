@@ -12,11 +12,25 @@
             "name": "Component.js"
         },
         {
-            "name": "controller\\User-dbg.controller.js",
+            "name": "controller\\AjaxPlayer-dbg.js",
             "isDebug": true
         },
         {
-            "name": "controller\\User.controller.js"
+            "name": "controller\\AjaxPlayer.js"
+        },
+        {
+            "name": "controller\\AjaxTeam-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller\\AjaxTeam.js"
+        },
+        {
+            "name": "controller\\App-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller\\App.controller.js"
         },
         {
             "name": "di.code-validation.core_issues.json"
@@ -39,7 +53,13 @@
             "name": "tmp\\Component.js"
         },
         {
-            "name": "tmp\\controller\\User.controller.js"
+            "name": "tmp\\controller\\AjaxPlayer.js"
+        },
+        {
+            "name": "tmp\\controller\\AjaxTeam.js"
+        },
+        {
+            "name": "tmp\\controller\\App.controller.js"
         },
         {
             "name": "tmp\\i18n\\i18n.properties",
@@ -52,16 +72,22 @@
             "name": "tmp\\manifest.json"
         },
         {
-            "name": "tmp\\view\\Users.view.xml"
+            "name": "tmp\\view\\App.view.xml"
         },
         {
             "name": "tmp-dbg\\Component.js"
         },
         {
-            "name": "tmp-dbg\\controller\\User.controller.js"
+            "name": "tmp-dbg\\controller\\AjaxPlayer.js"
         },
         {
-            "name": "view\\Users.view.xml"
+            "name": "tmp-dbg\\controller\\AjaxTeam.js"
+        },
+        {
+            "name": "tmp-dbg\\controller\\App.controller.js"
+        },
+        {
+            "name": "view\\App.view.xml"
         },
         {
             "name": "xs-app.json"
