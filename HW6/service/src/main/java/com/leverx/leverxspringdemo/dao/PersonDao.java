@@ -31,7 +31,7 @@ public class PersonDao implements IPersonDao {
 		Optional<Person> entity = null;
 		try (Connection conn = dataSource.getConnection();
 				PreparedStatement stmnt = conn.prepareStatement(
-						"SELECT TOP 1 \"id\", \"name\", \"surname\", \"age\" FROM \"javaSCP::Person\" WHERE \"id\" = ?")) {
+						"SELECT TOP 1 \"id\", \"name\", \"surname\", \"age\" FROM \"JAVAHWSCP::Person\" WHERE \"id\" = ?")) {
 			stmnt.setLong(1, id);
 			ResultSet result = stmnt.executeQuery();
 			if (result.next()) {
@@ -53,19 +53,19 @@ public class PersonDao implements IPersonDao {
 	@Override
 	public List<Person> getAll() {
 		List<Person> personList = new ArrayList<Person>();
-		try (Connection conn = dataSource.getConnection();
-				PreparedStatement stmnt = conn
-						.prepareStatement("SELECT \"id\", \"name\", \"surname\", \"age\" FROM \"javaSCP::Person\"")) {
-			ResultSet result = stmnt.executeQuery();
-			while (result.next()) {
-				Person person = new Person();
-				person.setId(result.getLong("ID"));
-				person.setName(result.getString("NAME"));
-				person.setSurname(result.getString("SURNAME"));
-				person.setAge(result.getInt("AGE"));
-				personList.add(person);
-			}
-		} catch (SQLException e) {
+			try (Connection conn = dataSource.getConnection();
+				 PreparedStatement stmnt = conn
+						 .prepareStatement("SELECT \"id\", \"name\", \"surname\", \"age\" FROM \"JAVAHWSCP::Person\"")) {
+				ResultSet result = stmnt.executeQuery();
+				while (result.next()) {
+					Person person = new Person();
+					person.setId(result.getLong("ID"));
+					person.setName(result.getString("NAME"));
+					person.setSurname(result.getString("SURNAME"));
+					person.setAge(result.getInt("AGE"));
+					personList.add(person);
+				}
+			} catch (SQLException e) {
 			logger.error("Error while trying to get list of entities: " + e.getMessage());
 		}
 		return personList;
@@ -75,7 +75,7 @@ public class PersonDao implements IPersonDao {
 	public void save(Person entity) {
 		try (Connection conn = dataSource.getConnection();
 				PreparedStatement stmnt = conn.prepareStatement(
-						"INSERT INTO \"javaSCP::Person\"(\"name\", \"surname\", \"age\") VALUES (?, ?, ?)")) {
+						"INSERT INTO \"JAVAHWSCP::Person\"(\"name\", \"surname\", \"age\") VALUES (?, ?, ?)")) {
 			stmnt.setString(1, entity.getName());
 			stmnt.setString(2, entity.getSurname());
 			stmnt.setInt(3, entity.getAge());
@@ -88,7 +88,7 @@ public class PersonDao implements IPersonDao {
 	@Override
 	public void delete(Long id) {
 		try (Connection conn = dataSource.getConnection();
-				PreparedStatement stmnt = conn.prepareStatement("DELETE FROM \"javaSCP::Person\" WHERE \"id\" = ?")) {
+				PreparedStatement stmnt = conn.prepareStatement("DELETE FROM \"JAVAHWSCP::Person\" WHERE \"id\" = ?")) {
 			stmnt.setLong(1, id);
 			stmnt.execute();
 		} catch (SQLException e) {
@@ -100,7 +100,7 @@ public class PersonDao implements IPersonDao {
 	public void update(Person entity) {
 		try (Connection conn = dataSource.getConnection();
 				PreparedStatement stmnt = conn.prepareStatement(
-						"UPDATE \"javaSCP::Person\" SET \"name\" = ?, \"surname\" = ?, \"age\" = ? WHERE \"id\" = ?")) {
+						"UPDATE \"JAVAHWSCP::Person\" SET \"name\" = ?, \"surname\" = ?, \"age\" = ? WHERE \"id\" = ?")) {
 			stmnt.setString(1, entity.getName());
 			stmnt.setString(2, entity.getSurname());
 			stmnt.setInt(3, entity.getAge());

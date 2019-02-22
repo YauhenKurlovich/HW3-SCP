@@ -1,4 +1,4 @@
-ID: javaSCP
+ID: JAVAHWSCP
 _schema-version: "2.1"
 version: 0.0.2
 
@@ -57,7 +57,7 @@ resources:
    parameters:
      service-plan: hdi-shared
      service: hanatrial
-     config: {schema: PTTESTDB}
+     config: {schema: ZKURJHDBTEST}
    properties:
      hdi-container-name: ${service-name}
    type: com.sap.xs.hdi-container
