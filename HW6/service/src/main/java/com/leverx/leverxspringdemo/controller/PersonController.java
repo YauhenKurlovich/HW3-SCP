@@ -1,5 +1,6 @@
 package com.leverx.leverxspringdemo.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,13 @@ public class PersonController {
 	public List<Person> getAllPerson() {
 		return personService.getPersonAll();
 	}
-	
+
+
+	@GetMapping(value="/personCars/{id}")
+	public Person getPersonCars(@PathVariable Long id) throws SQLException {
+		return personService.getPersonCars(id);
+	}
+
 	@GetMapping(value="/person/{id}")
 	public Person getPerson(@PathVariable Long id) {
 		return personService.getPerson(id);

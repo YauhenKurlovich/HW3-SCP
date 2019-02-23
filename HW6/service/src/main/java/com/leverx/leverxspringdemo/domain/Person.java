@@ -1,5 +1,7 @@
 package com.leverx.leverxspringdemo.domain;
 
+import java.util.List;
+
 public class Person {
 	
 	private long id;
@@ -9,7 +11,14 @@ public class Person {
 	private String surname;
 	
 	private int age;
-	
+
+	public List<Car> carList;
+
+
+	public void setCars(List<Car> carList) {
+		this.carList = carList;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -41,5 +50,5 @@ public class Person {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
+
 }

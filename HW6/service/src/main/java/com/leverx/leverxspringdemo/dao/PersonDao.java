@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import javax.sql.DataSource;
 
+import com.leverx.leverxspringdemo.domain.Car;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class PersonDao implements IPersonDao {
 
 	@Autowired
 	private DataSource dataSource;
+
+
 
 	@Override
 	public Optional<Person> getById(Long id) {
@@ -48,6 +51,37 @@ public class PersonDao implements IPersonDao {
 			logger.error("Error while trying to get entity by Id: " + e.getMessage());
 		}
 		return entity;
+	}
+
+	public Person getCars(Long id) throws SQLException {
+
+		Connection conn = dataSource.getConnection();
+		PreparedStatement stmnt = conn.prepareStatement("SELECT TOP 1 \"id\", \"name\", \"surname\", \"age\" FROM \"JAVAHWSCP::Person\" WHERE \"id\" = ?");
+			stmnt.setLong(1, id);
+			ResultSet result = stmnt.executeQuery();
+			Person person = new Person();
+			if (result.next()) {
+				person.setId(id);
+				person.setName(result.getString("name"));
+				person.setSurname(result.getString("surname"));
+				person.setAge(result.getInt("age"));
+			}
+
+		List<Car> carList = new ArrayList<Car>();
+
+			PreparedStatement stmnt2 = conn.prepareStatement("SELECT \"id\", \"name\", \"pId\" FROM \"JAVAHWSCP::Car\" WHERE \"pId\" = ? ");
+			stmnt2.setLong(1, id);
+			ResultSet result2 = stmnt2.executeQuery();
+			while (result2.next()) {
+				Car car = new Car();
+				car.setId(result2.getLong("ID"));
+				car.setName(result2.getString("NAME"));
+				car.setPid(result2.getLong("PID"));
+				carList.add(car);
+			}
+			person.carList = carList;
+			conn.close();
+		return person;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.leverx.leverxspringdemo.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +19,11 @@ public class PersonService {
 	public List<Person> getPersonAll() {
 		return personDao.getAll();
 	}
-	
+
+	public Person getPersonCars(Long id) throws SQLException {
+		return personDao.getCars(id);
+	}
+
 	public Person getPerson(Long id) {
 		Optional<Person> personOptional = this.personDao.getById(id);
 		Person person = null;
