@@ -50,8 +50,10 @@ sap.ui.define([
 			teamModel.teamName = rowCells[this.mainConfig.teamNamePosition].getValue();
 			teamModel.sportName = rowCells[this.mainConfig.sportNamePosition].getValue();
 
+			var that = this;
 			$.ajax(AjaxTeam.updateTeam(teamModel)).done(function (response) {
-				this.teams.refresh(true);
+				var oTable = that.getView().byId(that.mainConfig.teamTableId);
+				oTable.getModel(that.mainConfig.teamsModelName).refresh(true);
 			});
 		},
 		onDelete: function (oEvent) {
@@ -59,8 +61,10 @@ sap.ui.define([
 			var rowCells = oEvent.getSource().getParent().getCells();
 			teamModel.teamId = rowCells[this.mainConfig.teamIdPosition].getValue();
 
+			var that = this;
 			$.ajax(AjaxTeam.deleteTeam(teamModel.teamId)).done(function (response) {
-				this.teams.refresh(true);
+				var oTable = that.getView().byId(that.mainConfig.teamTableId);
+				oTable.getModel(that.mainConfig.teamsModelName).refresh(true);
 			});
 		},
 
@@ -72,8 +76,10 @@ sap.ui.define([
 			playerModel.name = rowCells[this.mainConfig.playerNamePosition].getValue();
 			playerModel.country = rowCells[this.mainConfig.countryPosition].getValue();
 
+			var that = this;
 			$.ajax(AjaxPlayer.updatePlayer(playerModel)).done(function (response) {
-				this.players.refresh(true);
+				var oTable = that.getView().byId(that.mainConfig.playerTableId);
+				oTable.getModel(that.mainConfig.playersModelName).refresh(true);
 			});
 		},
 		onDeleteP: function (oEvent) {
@@ -82,8 +88,10 @@ sap.ui.define([
 
 			playerModel.pId = rowCells[this.mainConfig.playerIdPosition].getValue();
 
+			var that = this;
 			$.ajax(AjaxPlayer.deletePlayer(playerModel.pId)).done(function (response) {
-				this.players.refresh(true);
+				var oTable = that.getView().byId(that.mainConfig.playerTableId);
+				oTable.getModel(that.mainConfig.playersModelName).refresh(true);
 			});
 		},
 
