@@ -35,6 +35,17 @@ sap.ui.define([
 		fixedSizeDialog: null,
 		fixedSizeDialogP: null,
 
+		onInit: function (oEvent) {
+			this.oView = this.getView();
+			this.mainConfig = this.oView.getModel("mainConfig").getData();
+			this.teamModel= this.oView.getModel("teamModel");
+			this.playerModel= this.oView.getModel("playerModel");
+			this.teams = this.oView.getModel(this.mainConfig.teamsModelName);
+			this.players = this.oView.getModel(this.mainConfig.playersModelName);
+			this.teamTableId = this.oView.byId(this.mainConfig.teamTableId);
+			this.playerTableId = this.oView.byId(this.mainConfig.playerTableId);
+		},
+
 		onEdit: function (oEvent) {
 			var oTable = this.getView().byId('idTeamsTable');
 			var aItems = oTable.getItems();
@@ -88,26 +99,24 @@ sap.ui.define([
 		},
 
 		onSave: function (oEvent) {
-			var oTable = this.getView().byId('idTeamsTable');
-			var selItem = oTable.getSelectedItem();
-			var aItems = oTable.getItems();
-			var index = oTable.indexOfItem(selItem);
-			var id = aItems[index].getCells()[0].getValue();
-			var name = aItems[index].getCells()[1].getValue();
-			var sportName = aItems[index].getCells()[2].getValue();
-			var teamId = selItem.getBindingContext("dataModel").getObject().teamId;
-			$.ajax(AjaxTeam.updateTeam(teamId, sportName, name)).done(function (response) {
-				selItem.getBindingContext("dataModel").getModel().refresh(true);
+			var teamModel = this.teamModel.getData();
+			var rowCells = oEvent.getSource().getParent().getCells();
+
+			teamModel.teamId = rowCells[this.mainConfig.teamIdPosition].getValue();
+			teamModel.teamName = rowCells[this.mainConfig.teamNamePosition].getValue();
+			teamModel.sportName = rowCells[this.mainConfig.sportNamePosition].getValue();
+
+			$.ajax(AjaxTeam.updateTeam(teamModel)).done(function (response) {
+				this.teams.refresh(true);
 			});
-			editModeOff(aItems, index);
 		},
 		onDelete: function (oEvent) {
-			var oTable = this.getView().byId('idTeamsTable');
-			var selItem = oTable.getSelectedItem();
-			var id = selItem.getBindingContext("dataModel").getObject().teamId;
+			var teamModel = this.teamModel.getData();
+			var rowCells = oEvent.getSource().getParent().getCells();
+			teamModel.teamId = rowCells[this.mainConfig.teamIdPosition].getValue();
 
-			$.ajax(AjaxTeam.deleteTeam(id)).done(function (response) {
-				selItem.getBindingContext("dataModel").getModel().refresh(true);
+			$.ajax(AjaxTeam.deleteTeam(teamModel.teamId)).done(function (response) {
+				this.teams.refresh(true);
 			});
 		},
 

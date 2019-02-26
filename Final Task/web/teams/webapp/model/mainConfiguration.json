@@ -1,12 +1,15 @@
 {
   "teamAjaxDelete": "",
   "teamAjaxCreate": "",
-  "teamAjaxUpdate": "",
+  "teamAjaxUpdate": "https://p2001126657trial-trial-dev-router.cfapps.eu10.hana.ondemand.com/api/xsjs/team/team.xsjs",
   "playerAjaxDelete": "",
   "playerAjaxCreate": "",
   "playerAjaxUpdate": "",
   "teamTableId": "idTeamsTable",
   "playerTableId": "idPlayersTable",
-  "teamTableModelName": "dataModel",
-  "teamPlayersModelName": "dataModel"
+  "teamsModelName": "dataModel",
+  "playersModelName": "dataModel",
+  "teamIdPosition" : 0,
+  "teamNamePosition" : 1,
+  "sportNamePosition" : 2
 }
