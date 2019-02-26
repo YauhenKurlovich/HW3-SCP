@@ -87,20 +87,6 @@ sap.ui.define([
 			}
 		},
 
-		onItemPress : function (oEvent){
-			// var oTable = this.getView().byId('idTeamsTable');
-			// var selItem = oTable.getSelectedItem();
-			// var aItems = oTable.getItems();
-			// var index = oTable.indexOfItem(selItem); 
-			// var id = aItems[index].getCells()[0].getValue();
-			// var oPlayersTable = this.getView().byId('idPlayersTable');
-			
-			// oPlayersTable.bindItems({
-			// 	path: "/Players",
-			// 	model: "dataModel"
-			//   });
-		},
-
 		onSave: function (oEvent) {
 			var oTable = this.getView().byId('idTeamsTable');
 			var selItem = oTable.getSelectedItem();
