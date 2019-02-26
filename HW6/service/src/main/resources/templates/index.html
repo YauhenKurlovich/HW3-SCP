@@ -6,6 +6,9 @@
 </head>
 <body>
 <h2 th:text="'Application name:' + ${appName}">Application name:</h2>
+<h2 th:text="'Space name:' + ${spaceName}">Space name: </h2>
+<h2 th:text="'User name:' + ${username}">User name: </h2>
+<h2 th:text="'Name:' + ${body}">Name: </h2>
 <h3>Destinations:</h3>
 <div th:each="destination: ${destinations}">
 	<p>-------------------------------------------------</p>

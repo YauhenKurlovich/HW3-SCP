@@ -1,5 +1,6 @@
 package com.leverx.leverxspringdemo.config;
 
+import com.sap.cloud.sdk.cloudplatform.ScpCfCloudPlatform;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,6 +13,11 @@ public class CloudConfig {
 	@Bean
 	public CloudPlatform platform() {
 		return CloudPlatformAccessor.getCloudPlatform();
+	}
+
+	@Bean
+	public ScpCfCloudPlatform space() {
+		return  ScpCfCloudPlatform.getInstanceOrThrow();
 	}
 	
 }

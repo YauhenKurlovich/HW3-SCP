@@ -27,8 +27,6 @@ public class PersonDao implements IPersonDao {
 	@Autowired
 	private DataSource dataSource;
 
-
-
 	@Override
 	public Optional<Person> getById(Long id) {
 		Optional<Person> entity = null;

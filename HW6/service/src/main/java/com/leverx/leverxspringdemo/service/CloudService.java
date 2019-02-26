@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.JsonElement;
+import com.sap.cloud.sdk.cloudplatform.ScpCfCloudPlatform;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +21,20 @@ public class CloudService {
 	
 	@Autowired
 	private CloudPlatform platform;
+
+
+	@Autowired
+	private ScpCfCloudPlatform space;
 	
 	public String getApplicationName() {
 		return platform.getApplicationName();
 	}
+
+	public Map<String, JsonElement> getSpaceName(){
+		space.getApplicationName();
+		return  space.getVcapApplication();
+	}
+
 
 	public List<Destination> getDestinations() {
 		List<Destination> destinationList = new ArrayList<Destination>();
