@@ -13,7 +13,7 @@ sap.ui.define(function() {
                     "content-type": "application/json"
                 },
                 "processData": false,
-                "data": "{\"pId\": \"" + player.id + "\",\"name\": \"" + player.name + "\", \"country\": \"" + player.country + "\"}"
+                "data": "{\"pId\": \"" + player.pId + "\",\"name\": \"" + player.name + "\", \"country\": \"" + player.country + "\"}"
             };
             return settings;
         },
