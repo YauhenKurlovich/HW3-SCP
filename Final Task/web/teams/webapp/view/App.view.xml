@@ -59,10 +59,10 @@
                       <Input editable="false" value="{dataModel>sportName}"/>
                     </cells>
                        <cells>
-                      <Label text="{dataModel>ts_create}"/>
+                      <Text text="{dataModel>ts_create}"/>
                     </cells>
                     <cells>
-                      <Label text="{dataModel>ts_update}"/>
+                      <Text text="{dataModel>ts_update}"/>
                     </cells>
                      <cells>
                       <Button id="deleteButton" type="Emphasized" icon="sap-icon://delete"
@@ -134,10 +134,10 @@
                       <Input editable="false" value="{dataModel>country}"/>
                     </cells>
                        <cells>
-                      <Label text="{dataModel>ts_create}"/>
+                      <Text text="{dataModel>ts_create}"/>
                     </cells>
                     <cells>
-                      <Label text="{dataModel>ts_update}"/>
+                      <Text text="{dataModel>ts_update}"/>
                     </cells>
                      <cells>
                       <Button id="deletePButton" type="Emphasized" icon="sap-icon://delete"
