@@ -11,140 +11,87 @@ sap.ui.define([
 ], function (jQuery, Button, Dialog, List, StandardListItem, Controller, JSONModel, AjaxTeam,AjaxPlayer) {
 	"use strict";
 
-	this.editModeOn = function (items, index) {
-		items[index].getCells()[6].setEnabled(true);
-	}
-
-	this.editModeOff = function (items, index) {
-		items[index].getCells()[1].setEditable(false);
-		items[index].getCells()[2].setEditable(false);
-		items[index].getCells()[6].setEnabled(false);
-	}
-
-	this.editModePOn = function (items, index) {
-		items[index].getCells()[7].setEnabled(true);
-	}
-
-	this.editModePOff = function (items, index) {
-		items[index].getCells()[2].setEditable(false);
-		items[index].getCells()[3].setEditable(false);
-		items[index].getCells()[7].setEnabled(false);
-	}
-
 	return Controller.extend("teams.controller.App", {
 		fixedSizeDialog: null,
 		fixedSizeDialogP: null,
 
-		onEdit: function (oEvent) {
-			var oTable = this.getView().byId('idTeamsTable');
-			var aItems = oTable.getItems();
+		onInit: function (oEvent) {
+			this.oView = this.getView();
+			this.mainConfig = this.oView.getModel("mainConfig").getData();
+			this.teamModel= this.oView.getModel("teamModel");
+			this.playerModel= this.oView.getModel("playerModel");
+			this.teams = this.oView.getModel(this.mainConfig.teamsModelName);
+			this.players = this.oView.getModel(this.mainConfig.playersModelName);
+			this.teamTableId = this.oView.byId(this.mainConfig.teamTableId);
+			this.playerTableId = this.oView.byId(this.mainConfig.playerTableId);
+		},
 
-			for(var i = 0; i < aItems.length; i ++)
-			{
-				for (var j = 1; j < 3; j++) {
-					aItems[i].getCells()[j].setEditable();
-				}
-				editModeOn(aItems, i);
-			}
+		onEdit: function (oEvent) {
+			this.oView.getModel("mainConfig").setProperty("/editModeTTable", true)
 		},
 
 		offEdit: function (oEvent) {
-			var oTable = this.getView().byId('idTeamsTable');
-			var aItems = oTable.getItems();
-
-			for(var i = 0; i < aItems.length; i ++)
-			{
-				for (var j = 1; j < 3; j++) {
-					aItems[i].getCells()[j].setEditable(false);
-				}
-				editModeOff(aItems, i);
-			}
+			this.oView.getModel("mainConfig").setProperty("/editModeTTable", false)
 		},
 
 		onEditP: function (oEvent) {
-			var oTable = this.getView().byId('idPlayersTable');
-			var aItems = oTable.getItems();
-
-			for(var i = 0; i < aItems.length; i ++)
-			{
-				for (var j = 2; j < 4; j++) {
-					aItems[i].getCells()[j].setEditable();
-				}
-				editModePOn(aItems, i);
-			}
+			this.oView.getModel("mainConfig").setProperty("/editModePTable", true)
 		},
 
 		offEditP: function (oEvent) {
-			var oTable = this.getView().byId('idPlayersTable');
-			var aItems = oTable.getItems();
-
-			for(var i = 0; i < aItems.length; i ++)
-			{
-				for (var j = 2; j < 4; j++) {
-					aItems[i].getCells()[j].setEditable(false);
-				}
-				editModePOff(aItems, i);
-			}
-		},
-
-		onItemPress : function (oEvent){
-			// var oTable = this.getView().byId('idTeamsTable');
-			// var selItem = oTable.getSelectedItem();
-			// var aItems = oTable.getItems();
-			// var index = oTable.indexOfItem(selItem); 
-			// var id = aItems[index].getCells()[0].getValue();
-			// var oPlayersTable = this.getView().byId('idPlayersTable');
-			
-			// oPlayersTable.bindItems({
-			// 	path: "/Players",
-			// 	model: "dataModel"
-			//   });
+			this.oView.getModel("mainConfig").setProperty("/editModePTable", false)
 		},
 
 		onSave: function (oEvent) {
-			var oTable = this.getView().byId('idTeamsTable');
-			var selItem = oTable.getSelectedItem();
-			var aItems = oTable.getItems();
-			var index = oTable.indexOfItem(selItem);
-			var id = aItems[index].getCells()[0].getValue();
-			var name = aItems[index].getCells()[1].getValue();
-			var sportName = aItems[index].getCells()[2].getValue();
-			var teamId = selItem.getBindingContext("dataModel").getObject().teamId;
-			$.ajax(AjaxTeam.updateTeam(teamId, sportName, name)).done(function (response) {
-				selItem.getBindingContext("dataModel").getModel().refresh(true);
+			var teamModel = this.teamModel.getData();
+			var rowCells = oEvent.getSource().getParent().getCells();
+
+			teamModel.teamId = rowCells[this.mainConfig.teamIdPosition].getValue();
+			teamModel.teamName = rowCells[this.mainConfig.teamNamePosition].getValue();
+			teamModel.sportName = rowCells[this.mainConfig.sportNamePosition].getValue();
+
+			var that = this;
+			$.ajax(AjaxTeam.updateTeam(teamModel)).done(function (response) {
+				var oTable = that.getView().byId(that.mainConfig.teamTableId);
+				oTable.getModel(that.mainConfig.teamsModelName).refresh(true);
 			});
-			editModeOff(aItems, index);
 		},
 		onDelete: function (oEvent) {
-			var oTable = this.getView().byId('idTeamsTable');
-			var selItem = oTable.getSelectedItem();
-			var id = selItem.getBindingContext("dataModel").getObject().teamId;
+			var teamModel = this.teamModel.getData();
+			var rowCells = oEvent.getSource().getParent().getCells();
+			teamModel.teamId = rowCells[this.mainConfig.teamIdPosition].getValue();
 
-			$.ajax(AjaxTeam.deleteTeam(id)).done(function (response) {
-				selItem.getBindingContext("dataModel").getModel().refresh(true);
+			var that = this;
+			$.ajax(AjaxTeam.deleteTeam(teamModel.teamId)).done(function (response) {
+				var oTable = that.getView().byId(that.mainConfig.teamTableId);
+				oTable.getModel(that.mainConfig.teamsModelName).refresh(true);
 			});
 		},
 
 		onSaveP: function (oEvent) {
-			var oTable = this.getView().byId('idPlayersTable');
-			var selItem = oTable.getSelectedItem();
-			var aItems = oTable.getItems();
-			var index = oTable.indexOfItem(selItem);
-			var id = aItems[index].getCells()[0].getValue();
-			var name = aItems[index].getCells()[2].getValue();
-			var country = aItems[index].getCells()[3].getValue();
-			$.ajax(AjaxPlayer.updatePlayer(id, name, country)).done(function (response) {
-				selItem.getBindingContext("dataModel").getModel().refresh(true);
+			var playerModel = this.playerModel.getData();
+			var rowCells = oEvent.getSource().getParent().getCells();
+
+			playerModel.pId = rowCells[this.mainConfig.playerIdPosition].getValue();
+			playerModel.name = rowCells[this.mainConfig.playerNamePosition].getValue();
+			playerModel.country = rowCells[this.mainConfig.countryPosition].getValue();
+
+			var that = this;
+			$.ajax(AjaxPlayer.updatePlayer(playerModel)).done(function (response) {
+				var oTable = that.getView().byId(that.mainConfig.playerTableId);
+				oTable.getModel(that.mainConfig.playersModelName).refresh(true);
 			});
-			editModeOff(aItems, index);
 		},
 		onDeleteP: function (oEvent) {
-			var oTable = this.getView().byId('idPlayersTable');
-			var selItem = oTable.getSelectedItem();
-			var id = selItem.getBindingContext("dataModel").getObject().pId;
+			var playerModel = this.playerModel.getData();
+			var rowCells = oEvent.getSource().getParent().getCells();
 
-			$.ajax(AjaxPlayer.deletePlayer(id)).done(function (response) {
-				selItem.getBindingContext("dataModel").getModel().refresh(true);
+			playerModel.pId = rowCells[this.mainConfig.playerIdPosition].getValue();
+
+			var that = this;
+			$.ajax(AjaxPlayer.deletePlayer(playerModel.pId)).done(function (response) {
+				var oTable = that.getView().byId(that.mainConfig.playerTableId);
+				oTable.getModel(that.mainConfig.playersModelName).refresh(true);
 			});
 		},
 

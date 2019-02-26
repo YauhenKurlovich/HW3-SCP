@@ -46,6 +46,15 @@
             "name": "manifest.json"
         },
         {
+            "name": "model\\mainConfiguration.json"
+        },
+        {
+            "name": "model\\playerModel.json"
+        },
+        {
+            "name": "model\\teamModel.json"
+        },
+        {
             "name": "tmp\\Component-preload.js",
             "merged": true
         },
@@ -70,6 +79,15 @@
         },
         {
             "name": "tmp\\manifest.json"
+        },
+        {
+            "name": "tmp\\model\\mainConfiguration.json"
+        },
+        {
+            "name": "tmp\\model\\playerModel.json"
+        },
+        {
+            "name": "tmp\\model\\teamModel.json"
         },
         {
             "name": "tmp\\view\\App.view.xml"

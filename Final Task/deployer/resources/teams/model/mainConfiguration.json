@@ -1,0 +1,15 @@
+{
+  "teamTableId": "idTeamsTable",
+  "playerTableId": "idPlayersTable",
+  "teamsModelName": "dataModel",
+  "playersModelName": "dataModel",
+  "teamIdPosition" : 0,
+  "teamNamePosition" : 1,
+  "sportNamePosition" : 2,
+  "playerIdPosition" : 0,
+  "playerNamePosition" : 2,
+  "countryPosition" : 3,
+  "editModeTTable": false,
+  "editModePTable": false
+
+}

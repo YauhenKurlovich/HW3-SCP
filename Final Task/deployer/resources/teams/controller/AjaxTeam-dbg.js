@@ -3,18 +3,18 @@ sap.ui.define(function() {
 
 	var AjaxTeam = {
 
-	updateTeam :  function (id,sportName,name) {
-            var settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://p2001126657trial-trial-dev-router.cfapps.eu10.hana.ondemand.com/api/xsjs/team/team.xsjs",
-                "method": "PUT",
-                "headers": {
-                    "content-type": "application/json"
-                },
-                "processData": false,
-                "data": "{\"teamId\": \"" + id + "\",\"name\": \"" + name + "\", \"sportName\": \"" + sportName + "\"}"
-            };
+	updateTeam :  function (teamModel, url) {
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://p2001126657trial-trial-dev-service.cfapps.eu10.hana.ondemand.com/xsjs/team/team.xsjs",
+            "method": "PUT",
+            "headers": {
+                "content-type": "application/json"
+            },
+            "processData": false,
+            "data": "{ \"teamId\": \"" + teamModel.teamId + "\", \"name\": \"" + teamModel.teamName + "\", \"sportName\": \"" + teamModel.sportName + "\" }"
+        };
             return settings;
         },
         
