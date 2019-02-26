@@ -53,10 +53,10 @@
                       <Input editable="false" value="{dataModel>teamId}"/>
                     </cells>
                     <cells>
-                      <Input editable="false" value="{dataModel>name}"/>
+                      <Input editable="{mainConfig>/editModeTTable}" value="{dataModel>name}"/>
                     </cells>
                        <cells>
-                      <Input editable="false" value="{dataModel>sportName}"/>
+                      <Input editable="{mainConfig>/editModeTTable}" value="{dataModel>sportName}"/>
                     </cells>
                        <cells>
                       <Text text="{dataModel>ts_create}"/>
@@ -65,11 +65,11 @@
                       <Text text="{dataModel>ts_update}"/>
                     </cells>
                      <cells>
-                      <Button id="deleteButton" type="Emphasized" icon="sap-icon://delete"
+                      <Button enabled="{mainConfig>/editModeTTable}" id="deleteButton" type="Emphasized" icon="sap-icon://delete"
 							press="onDelete" />
                     </cells>
                      <cells>
-                     <Button id="saveButton" type="Emphasized" icon="sap-icon://save" enabled="false"
+                     <Button enabled="{mainConfig>/editModeTTable}" id="saveButton" type="Emphasized" icon="sap-icon://save"
 							press="onSave" />
                     </cells>
                   </ColumnListItem>
@@ -128,10 +128,10 @@
                       <Input editable="false" value="{dataModel>teamId}"/>
                     </cells>
                     <cells>
-                      <Input editable="false" value="{dataModel>name}"/>
+                      <Input editable="{mainConfig>/editModePTable}" value="{dataModel>name}"/>
                     </cells>
                        <cells>
-                      <Input editable="false" value="{dataModel>country}"/>
+                      <Input editable="{mainConfig>/editModePTable}" value="{dataModel>country}"/>
                     </cells>
                        <cells>
                       <Text text="{dataModel>ts_create}"/>
@@ -141,10 +141,10 @@
                     </cells>
                      <cells>
                       <Button id="deletePButton" type="Emphasized" icon="sap-icon://delete"
-							press="onDeleteP" />
+							press="onDeleteP" enabled="{mainConfig>/editModePTable}"/>
                     </cells>
                      <cells>
-                     <Button id="savePButton" type="Emphasized" icon="sap-icon://save" enabled="false"
+                     <Button id="savePButton" type="Emphasized" icon="sap-icon://save" enabled="{mainConfig>/editModePTable}"
 							press="onSaveP" />
                     </cells>
                   </ColumnListItem>

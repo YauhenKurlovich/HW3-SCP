@@ -3,7 +3,7 @@ sap.ui.define(function() {
 
 	var AjaxPlayer = {
 
-	updatePlayer :  function (id,name,country) {
+	updatePlayer :  function (player) {
             var settings = {
                 "async": true,
                 "crossDomain": true,
@@ -13,7 +13,7 @@ sap.ui.define(function() {
                     "content-type": "application/json"
                 },
                 "processData": false,
-                "data": "{\"pId\": \"" + id + "\",\"name\": \"" + name + "\", \"country\": \"" + country + "\"}"
+                "data": "{\"pId\": \"" + player.id + "\",\"name\": \"" + player.name + "\", \"country\": \"" + player.country + "\"}"
             };
             return settings;
         },

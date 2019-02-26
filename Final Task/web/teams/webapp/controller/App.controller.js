@@ -11,26 +11,6 @@ sap.ui.define([
 ], function (jQuery, Button, Dialog, List, StandardListItem, Controller, JSONModel, AjaxTeam,AjaxPlayer) {
 	"use strict";
 
-	this.editModeOn = function (items, index) {
-		items[index].getCells()[6].setEnabled(true);
-	}
-
-	this.editModeOff = function (items, index) {
-		items[index].getCells()[1].setEditable(false);
-		items[index].getCells()[2].setEditable(false);
-		items[index].getCells()[6].setEnabled(false);
-	}
-
-	this.editModePOn = function (items, index) {
-		items[index].getCells()[7].setEnabled(true);
-	}
-
-	this.editModePOff = function (items, index) {
-		items[index].getCells()[2].setEditable(false);
-		items[index].getCells()[3].setEditable(false);
-		items[index].getCells()[7].setEnabled(false);
-	}
-
 	return Controller.extend("teams.controller.App", {
 		fixedSizeDialog: null,
 		fixedSizeDialogP: null,
@@ -47,55 +27,19 @@ sap.ui.define([
 		},
 
 		onEdit: function (oEvent) {
-			var oTable = this.getView().byId('idTeamsTable');
-			var aItems = oTable.getItems();
-
-			for(var i = 0; i < aItems.length; i ++)
-			{
-				for (var j = 1; j < 3; j++) {
-					aItems[i].getCells()[j].setEditable();
-				}
-				editModeOn(aItems, i);
-			}
+			this.oView.getModel("mainConfig").setProperty("/editModeTTable", true)
 		},
 
 		offEdit: function (oEvent) {
-			var oTable = this.getView().byId('idTeamsTable');
-			var aItems = oTable.getItems();
-
-			for(var i = 0; i < aItems.length; i ++)
-			{
-				for (var j = 1; j < 3; j++) {
-					aItems[i].getCells()[j].setEditable(false);
-				}
-				editModeOff(aItems, i);
-			}
+			this.oView.getModel("mainConfig").setProperty("/editModeTTable", false)
 		},
 
 		onEditP: function (oEvent) {
-			var oTable = this.getView().byId('idPlayersTable');
-			var aItems = oTable.getItems();
-
-			for(var i = 0; i < aItems.length; i ++)
-			{
-				for (var j = 2; j < 4; j++) {
-					aItems[i].getCells()[j].setEditable();
-				}
-				editModePOn(aItems, i);
-			}
+			this.oView.getModel("mainConfig").setProperty("/editModePTable", true)
 		},
 
 		offEditP: function (oEvent) {
-			var oTable = this.getView().byId('idPlayersTable');
-			var aItems = oTable.getItems();
-
-			for(var i = 0; i < aItems.length; i ++)
-			{
-				for (var j = 2; j < 4; j++) {
-					aItems[i].getCells()[j].setEditable(false);
-				}
-				editModePOff(aItems, i);
-			}
+			this.oView.getModel("mainConfig").setProperty("/editModePTable", false)
 		},
 
 		onSave: function (oEvent) {
@@ -121,25 +65,25 @@ sap.ui.define([
 		},
 
 		onSaveP: function (oEvent) {
-			var oTable = this.getView().byId('idPlayersTable');
-			var selItem = oTable.getSelectedItem();
-			var aItems = oTable.getItems();
-			var index = oTable.indexOfItem(selItem);
-			var id = aItems[index].getCells()[0].getValue();
-			var name = aItems[index].getCells()[2].getValue();
-			var country = aItems[index].getCells()[3].getValue();
-			$.ajax(AjaxPlayer.updatePlayer(id, name, country)).done(function (response) {
-				selItem.getBindingContext("dataModel").getModel().refresh(true);
+			var playerModel = this.playerModel.getData();
+			var rowCells = oEvent.getSource().getParent().getCells();
+
+			playerModel.pId = rowCells[this.mainConfig.playerIdPosition].getValue();
+			playerModel.name = rowCells[this.mainConfig.playerNamePosition].getValue();
+			playerModel.country = rowCells[this.mainConfig.countryPosition].getValue();
+
+			$.ajax(AjaxPlayer.updatePlayer(playerModel)).done(function (response) {
+				this.players.refresh(true);
 			});
-			editModeOff(aItems, index);
 		},
 		onDeleteP: function (oEvent) {
-			var oTable = this.getView().byId('idPlayersTable');
-			var selItem = oTable.getSelectedItem();
-			var id = selItem.getBindingContext("dataModel").getObject().pId;
+			var playerModel = this.playerModel.getData();
+			var rowCells = oEvent.getSource().getParent().getCells();
 
-			$.ajax(AjaxPlayer.deletePlayer(id)).done(function (response) {
-				selItem.getBindingContext("dataModel").getModel().refresh(true);
+			playerModel.pId = rowCells[this.mainConfig.playerIdPosition].getValue();
+
+			$.ajax(AjaxPlayer.deletePlayer(playerModel.pId)).done(function (response) {
+				this.players.refresh(true);
 			});
 		},
 
