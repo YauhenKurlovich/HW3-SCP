@@ -1,0 +1,12 @@
+{
+  "teamAjaxDelete": "",
+  "teamAjaxCreate": "",
+  "teamAjaxUpdate": "",
+  "playerAjaxDelete": "",
+  "playerAjaxCreate": "",
+  "playerAjaxUpdate": "",
+  "teamTableId": "idTeamsTable",
+  "playerTableId": "idPlayersTable",
+  "teamTableModelName": "dataModel",
+  "teamPlayersModelName": "dataModel"
+}

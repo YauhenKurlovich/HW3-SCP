@@ -80,6 +80,18 @@
 					"useBatch": false,
 					"disableHeadRequestForToken": true
 				}
+			},
+			"mainConfig": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "./model/mainConfiguration.json"
+			},
+			"teamModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "./model/teamModel.json"
+			},
+			"playerModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "./model/playerModel.json"
 			}
 		}
 	},
